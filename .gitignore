@@ -1,0 +1,24 @@
+# LaTeX intermediate and build files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.fdb_latexmk
+*.out
+*.toc
+*.blg
+*.bbl
+*.synctex.gz
+*.nav
+*.snm
+*.pdf
+build/
+_minted-*
+*.xdv
+main.run.xml
+
+# Editor files
+.vscode/
+*.bak
+*~
