@@ -1,49 +1,49 @@
-# Diploma LaTeX Template and Workflow
+# LaTeX дипломын загвар (Windows-д тохиромжтой)
 
-This repo contains your current LaTeX work. I added a small, opinionated template and simple build scripts to help you work cleanly.
+Энэ репо нь бэлэн ашиглах боломжтой LaTeX дипломын тохиргоо, build скриптүүд, class файлтай. Шууд ашиглаарай эсвэл өөрийн төслөө үүн дээр тулгуурлан эхлүүлээрэй.
 
-What I added
+## Шаардлага
 
-- `build.bat`: Windows build script using `latexmk` (fallback to `pdflatex`/`bibtex`).
-- `clean.bat`: removes common auxiliary files and `build/`.
-- `.gitignore`: ignores LaTeX artifacts and `build/`.
-- `latexmkrc`: sets `build/` as output directory for `latexmk`.
-- `template/`: a minimal, well-organized example project structure you can copy from.
+- `latexmk`, `pdflatex`, `biber`/`bibtex` дэмждэг TeX түгээлт (MiKTeX эсвэл TeX Live).
+- PowerShell (Windows-т суурилсан).
 
-Recommended project structure
+## Төслийн бүтэц
 
-- `main.tex` — top-level document (keep this in repo root). Use `\include{chapters/01_intro}` for chapters.
-- `Thesis.cls` — your class file (already present). Keep near `main.tex`.
-- `chapters/` — split content into `01_introduction.tex`, `02_methods.tex`, etc.
-- `bib/` — place `.bib` files here (I added `template/bib/references.bib`).
-- `images/` — place figures here.
-- `build/` — output directory (created by `latexmk` or `build.bat`).
+- `main.tex` — үндсэн эхлэл; бүлэг/компонентуудыг оруулна.
+- `Thesis.cls` — `main.tex` ашигладаг class файл.
+- `chapters/` — бүлгийн эх файлууд (ж. `Chapter1_Introduction.tex`).
+- `components/` — эхний хэсгүүд, нэмэлт материал (гарчиг, товч, төлөвлөгөө гэх мэт).
+- `bib/references.bib` — ишлэлүүдийн сан.
+- `pictures/` — зургууд, дүрслэлүүд.
+- `build/` — build-ээр үүсэх гаралт, туслах файлууд.
+- `build.bat` — Windows build скрипт (`latexmkrc`-ийг ашигладаг `latexmk`).
+- `clean.bat` — туслах файлууд болон `build/`-ийг цэвэрлэнэ.
+- `latexmkrc` — `latexmk`-ийг `build/` руу бичихээр тохируулна.
 
-Quick start (Windows)
+## Шуурхай эхлэх
 
-1. Open a PowerShell in the repo root.
-2. Build with:
+1. Repo-ийн үндсэн хавтсанд PowerShell нээнэ.
+2. PDF бүтээх: `./build.bat`
+3. Гаралтыг `build/main.pdf` дотор харна.
+4. Туслах файлуудыг цэвэрлэх (заавал биш): `./clean.bat`
 
-```powershell
-.\build.bat
-```
+## Баримтаа засах
 
-3. Clean auxiliary files:
+- Агуулгаа `chapters/ChapterN_*.tex` болон `components/*.tex` дотор нэмнэ/засна.
+- `main.tex`-ийг бүтэц дээр төвлөрүүл: `\include{chapters/...}`, эхлэл/төгсгөлийн хэсэг, библиографийн тохиргоо.
+- Зургуудыг `pictures/` дотор хадгалж, `\includegraphics{pictures/your-figure}` гэж дууд.
+- Ишлэлүүдээ `bib/references.bib` дотор удирдаж, `main.tex` дотор `\addbibresource{bib/references.bib}` байгаа эсэхийг шалга.
 
-```powershell
-.\clean.bat
-```
+## latexmk-ийг шууд ашиглах
 
-If you use an editor like TeXstudio, VS Code with LaTeX Workshop, or TeXworks, point its build command to `latexmk` (recommended) or the `build.bat`.
+Гар удирдлага хэрэгтэй эсвэл өөр ОС дээр ажиллаж байвал:
 
-How to use the template
+- Тасралтгүй build: `latexmk -pdf -pvc main.tex`
+- Нэг удаагийн build: `latexmk -pdf main.tex`
+- Туслах файлыг цэвэрлэх: `latexmk -c`
 
-1. Inspect `template/main.tex` and `template/chapters/01_introduction.tex`.
-2. Either copy the files into the project root or adapt your existing `main.tex` to `\include{chapters/...}`.
-3. Put bibliography entries into `bib/references.bib` and ensure `\addbibresource{bib/references.bib}` is used (or adapt to your current `main.tex`).
+## Асуудал шийдэх
 
-Notes for a beginner
-
-- Keep the main structure small: the root `main.tex` should mostly `\include{}` chapter files.
-- Commit source files (`.tex`, `.bib`, images) but ignore build artifacts (handled by `.gitignore`).
-- Use `latexmk` where possible: it runs pdflatex/biber/bibtex as needed.
+- Class/багц дутуу: TeX багцын менежерээрээ (MiKTeX/TeX Live) суулга.
+- Библиограф шинэчлэхгүй байвал: `./build.bat` эсвэл `latexmk`-ийг дахин ажиллуулж `biber`/`bibtex`-ийг асаа.
+- Гаралт `build/` дотор алга бол: `latexmkrc` үндсэн хавтсанд байгаа эсэхийг шалга.
