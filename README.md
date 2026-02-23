@@ -4,7 +4,7 @@
 
 ## Шаардлага
 
-- `latexmk`, `pdflatex`, `biber`/`bibtex` дэмждэг TeX түгээлт (MiKTeX эсвэл TeX Live).
+- `latexmk`, `pdflatex`, `biber`/`bibtex` дэмждэг TeX distribution (MiKTeX эсвэл TeX Live).
 - PowerShell (Windows-т суурилсан).
 
 ## Төслийн бүтэц
