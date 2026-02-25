@@ -25,7 +25,7 @@
 
 % Fixes the "Mongolian not supported" biblatex warning
 \DeclareLanguageMapping{mongolian}{english}
-
+\usepackage{enumitem}
 \usepackage{wrapfig}
 \usepackage{multirow}
 \usepackage{indentfirst}
@@ -44,6 +44,7 @@
 \input{components/TitlePage}
 \input{components/Abstract}
 
+
 \newpage
 \tableofcontents
 
@@ -54,12 +55,14 @@
 
 \newpage
 \listoffig
-
+\input{components/Plan}
 \newpage
+
+
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{components/Plan}
+
 \input{Chapters/Chapter1_Introduction}
 \input{Chapters/Chapter2_Literature}
 \input{Chapters/Chapter3_Methodology}
