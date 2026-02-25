@@ -2,148 +2,84 @@
 
 \chapter*{Хавсралт}
 
-\section*{A. Загварын код (Python)}
+\section*{A. Системийн модулиуд ба үүргүүдийн товч жагсаалт}
 
-\subsection*{A.1 Шинж чанар тооцоолох функц}
-
-\begin{lstlisting}[language=Python, caption={Олон хугацааны хүрээний шинж чанар тооцоолол}, label={lst:features}]
-def compute_features(df, suffix):
-    close = df["close"]
-    feats = pd.DataFrame(index=df.index)
-    feats[f"close_{suffix}"] = close
-    feats[f"rsi_{suffix}"] = rsi(close, 14)
-    feats[f"atr_{suffix}"] = atr(df, 14)
-    feats[f"ma_5_{suffix}"] = close.rolling(5).mean()
-    feats[f"ma_20_{suffix}"] = close.rolling(20).mean()
-    feats[f"ma_50_{suffix}"] = close.rolling(50).mean()
-    feats[f"volatility_{suffix}"] = close.rolling(20).std()
-    feats[f"returns_{suffix}"] = close.pct_change()
-    return feats
-\end{lstlisting}
-
-\subsection*{A.2 Ансамбль загварын сургалт}
-
-\begin{lstlisting}[language=Python, caption={Walk-Forward Validation сургалт}, label={lst:training}]
-# Walk-Forward Validation: 2015-2022 train, 2023 val, 2024 test
-train_end = "2023-01-01"
-val_end = "2024-01-01"
-train_df = df[df["time"] < train_end]
-val_df = df[(df["time"] >= train_end) & (df["time"] < val_end)]
-test_df = df[(df["time"] >= val_end) & (df["time"] < TEST_START_DATE)]
-
-# Train GBDT models
-for seed in [42]:
-    models = fit_models(X_fit, y_fit, seed, pos_weight, X_val, y_val)
-
-# Calibration with Logistic Regression
-cal = LogisticRegression(max_iter=1000)
-cal.fit(predict_proba(models_flat, X_cal).reshape(-1, 1), y_cal)
-\end{lstlisting}
-
-\subsection*{A.3 Дохио шүүлтүүрлэх}
-
-\begin{lstlisting}[language=Python, caption={Дохионы шүүлтүүрийн тохиргоо}, label={lst:signal_filter}]
-CONF_THRESHOLD = 0.90    # Confidence >= 90%
-MIN_ATR_PIPS = 4.0       # ATR >= 4.0 pips
-SL_MULT = 5.0            # SL = ATR * 5
-TP_MULT = 15.0           # TP = ATR * 15 (SL * 3)
-MIN_SL_PIPS = 15.0       # Minimum SL: 15 pips
-MIN_TP_PIPS = 45.0       # Minimum TP: 45 pips
-\end{lstlisting}
-
-\section*{B. Backend API код}
-
-\subsection*{B.1 Дохио үүсгэх endpoint}
-
-\begin{lstlisting}[language=Python, caption={Flask API -- V10 дохио үүсгэх}, label={lst:api_signal}]
-@app.route('/signal/v2', methods=['GET'])
-def get_signal_v2():
-    min_confidence = float(
-        request.args.get('min_confidence', 85))
-    pair = request.args.get('pair', 'EUR/USD')
-    
-    # Historical data (500 bars, 1min)
-    df = get_twelvedata_dataframe(
-        interval="1min", outputsize=500, symbol=pair)
-    
-    if df is None or len(df) < 200:
-        return jsonify({'error': 'rate_limited'}), 429
-    
-    # Generate signal with V10 ensemble
-    signal = signal_generator.generate_signal(
-        df, min_confidence)
-    
-    return jsonify({'success': True, **signal})
-\end{lstlisting}
-
-\section*{C. MetaTrader 5 Expert Advisor}
-
-\subsection*{C.1 Эрсдэлд суурилсан лотын тооцоолол}
-
-\begin{lstlisting}[language=C, caption={MQL5 -- Лотын тооцоолол}, label={lst:mql5_risk}]
-double CalcLotByRisk(const string sym, double sl_pips)
-{
-   if(sl_pips <= 0.0) 
-       return SymbolInfoDouble(sym, SYMBOL_VOLUME_MIN);
-
-   double bal  = AccountInfoDouble(ACCOUNT_BALANCE);
-   double risk = bal * (RiskPerTrade / 100.0);
-   double pip  = PipSizeForSymbol(sym);
-   double tick_val = SymbolInfoDouble(sym, 
-                         SYMBOL_TRADE_TICK_VALUE);
-   double tick_sz  = SymbolInfoDouble(sym, 
-                         SYMBOL_TRADE_TICK_SIZE);
-   double pip_val = tick_val * (pip / tick_sz);
-   double vol = risk / (sl_pips * pip_val);
-   return ClampVolumeForSymbol(sym, vol);
-}
-\end{lstlisting}
-
-\section*{D. Мобайл аппликейшн код}
-
-\subsection*{D.1 React Native -- Ханшийн дэлгэц}
-
-\begin{lstlisting}[language=Java, caption={React Native -- Бодит цагийн ханш}, label={lst:mobile_rates}]
-const { data: liveRates, isLoading, refetch } = useQuery({
-    queryKey: ["liveRates"],
-    queryFn: async () => {
-        const result = await getLiveRates();
-        if (result.success) {
-            const ratesMap = {};
-            const rates = result.data.rates || {};
-            Object.keys(rates).forEach((key) => {
-                const pairName = key.replace("_", "/");
-                ratesMap[pairName] = rates[key];
-            });
-            return ratesMap;
-        }
-        return {};
-    },
-    refetchInterval: 60000, // 60 sec
-});
-\end{lstlisting}
-
-\section*{E. 2025 оны дохионы жишээ}
-
-Дохионы CSV файлын формат болон зарим жишээ:
+FutureHub системийн ерөнхий бүтэц, оролцогчдын харилцан үйлчлэлийг Зураг~\ref{fig:futurehub-context}-т харуулсан. Үүнийг модуль-үйлдлийн түвшинд нэгтгэн үзүүлэхэд:
 
 \begin{table}[H]
 \centering
-\caption{2025 оны дохионы жишээ}
-\label{tab:signals_sample}
+\caption{FutureHub системийн үндсэн модулиуд}
+\label{tab:modules}
 \small
-\begin{tabular}{lllcccc}
+\begin{tabular}{p{4cm}p{10cm}}
 \toprule
-\textbf{Цаг} & \textbf{Sym} & \textbf{Чиглэл} & \textbf{Conf} & \textbf{SL} & \textbf{TP} \\
+\textbf{Модуль} & \textbf{Зорилго, үндсэн үйлдлүүд} \\
 \midrule
-2025-01-14 13:30 & EURUSD & BUY & 0.930 & 21 & 64 \\
-2025-01-14 13:32 & EURUSD & BUY & 0.934 & 28 & 85 \\
-2025-01-23 14:00 & EURUSD & BUY & 0.921 & 25 & 75 \\
-2025-02-03 16:00 & EURUSD & SELL & 0.920 & 33 & 100 \\
-2025-03-07 15:30 & EURUSD & BUY & 0.912 & 20 & 60 \\
-2025-05-14 13:00 & EURUSD & BUY & 0.945 & 30 & 90 \\
+Флашкарт (мобайл) & Карт үүсгэх/засах/устгах, давталт (SRS), OCR-аар карт үүсгэх, аудио давталт \\
+Толь бичиг & Нэр томьёо нэмэх, хайх, тайлбар/орчуулга харах, чанарын хяналт \\
+Нийтлэл/Блог & Контент бичих/унших, мэдлэг хуваалцах \\
+Асуулт-хариулт & Асуулт асуух, хариулах, хэлэлцүүлэг өрнүүлэх \\
+Төслийн тэмдэглэл & Ажлын явц баримтжуулах, портфолио бүрдүүлэх \\
+Тэмцээн/Сургалт & Оролцоо нэмэгдүүлэх үйл ажиллагаа, даалгавар/оролцоо \\
+Ранкинг & Хувь нэмэр, идэвхийн оноо/үнэлгээ, урамшууллын механизм \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Нийт 1,065 дохио, 90\%+ confidence, ATR $\geq$ 4.0 пипс шүүлтүүртэй.
+\section*{B. Өгөгдлийн загварын жишээ (концепц түвшин)}
+
+Доорх хүснэгтүүд нь FutureHub системийн өгөгдлийн сангийн \textit{концепц} түвшний жишээ загвар юм.
+
+\begin{table}[H]
+\centering
+\caption{Флашкарт өгөгдлийн жишээ бүтэц}
+\label{tab:flashcard_schema}
+\small
+\begin{tabular}{p{4cm}p{10cm}}
+\toprule
+\textbf{Талбар} & \textbf{Тайлбар} \\
+\midrule
+user\_id & Карт эзэмшигч хэрэглэгч \\
+front & Урд талын текст (ж. япон нэр томьёо) \\
+back & Ар талын тайлбар/орчуулга \\
+example & Жишээ өгүүлбэр/тайлбар \\
+next\_review\_at & Дараагийн давталтын огноо (SRS) \\
+interval\_days & Давталтын интервал (өдрөөр) \\
+ease\_factor & Давталтын коэффициент \\
+created\_at & Үүсгэсэн огноо \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{C. Зайтай давталтын (SRS) хуваарь шинэчлэх псевдо код}
+
+\begin{algorithm}[H]
+\caption{Флашкартын дараагийн давталт төлөвлөх (ерөнхий)}
+\label{alg:srs_schedule}
+\begin{algorithmic}[1]
+\State \textbf{Require:} $\text{card}(\text{interval\_days}, \text{ease\_factor}), \text{rating} \in \{0,1,2,3\}$
+\State \textbf{Ensure:} updated $\text{interval\_days, ease\_factor, next\_review\_at}$
+\If{$\text{rating} \le 1$}
+    \State $\text{interval\_days} \gets 1$
+\Else
+    \State $\text{ease\_factor} \gets \max(1.3, \text{ease\_factor} + 0.1 \times (\text{rating}-2))$
+    \State $\text{interval\_days} \gets \max(1, \lfloor \text{interval\_days} \times \text{ease\_factor} \rfloor)$
+\EndIf
+\State $\text{next\_review\_at} \gets \text{today} + \text{interval\_days}$
+\end{algorithmic}
+\end{algorithm}
+
+\section*{D. OCR-аар карт үүсгэх урсгалын жишээ}
+
+\begin{lstlisting}[language={}, caption={OCR-аас флашкарт үүсгэх жишээ payload}, label={lst:ocr_payload}]
+{
+  "image": "<base64 or file reference>",
+  "language": "jpn",
+  "selectedText": "...",
+  "card": {
+    "front": "...",
+    "back": "...",
+    "tags": ["KUT", "Terminology"]
+  }
+}
+\end{lstlisting}
