@@ -18,13 +18,9 @@
 \newfontfamily\japanesefont{Yu Mincho}
 \newfontfamily\japanesefontsf{Yu Gothic}
 
-% 2. BIBLIOGRAPHY SETTINGS
-% Replace 'references.bib' with your actual filename
-\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
-\addbibresource{references.bib} 
 
 % Fixes the "Mongolian not supported" biblatex warning
-\DeclareLanguageMapping{mongolian}{english}
+
 \usepackage{enumitem}
 \usepackage{wrapfig}
 \usepackage{multirow}
@@ -74,8 +70,10 @@
 %---------
 \newpage
 \addcontentsline{toc}{chapter}{Ном зүй}
-\printbibliography[title={Ном зүй}]
 
+
+\input{components/Bibliography}
+\newpage
 \input{components/Appendix}
 \input{components/Graditude}
 

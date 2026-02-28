@@ -76,22 +76,25 @@
 % =========================
 % Headings
 % =========================
-% (Таны хүсэлтээр харагдах хэв маягийг хадгалж, size hierarchy-г зөв болголоо)
+% Chapter: Extra Large
 \titlespacing{\chapter}{0pt}{-70pt}{1pt}
 \titleformat{\chapter}[block]
-  {\bfseries\Large}
+  {\bfseries\huge} % Increased from \Large to \huge
   {\textsc{\thechapter.}}{0.5em}{}
 
+% Section: Large
 \titlespacing{\section}{0pt}{0pt}{1pt}
 \titleformat{\section}[block]
-  {\bfseries\large}     % section
+  {\bfseries\Large}    % Increased from \large to \Large
   {\thesection.}{0.5em}{}
 
+% Subsection: Medium-Large
 \titlespacing{\subsection}{0pt}{0pt}{1pt}
 \titleformat{\subsection}[block]
-  {\bfseries\normalsize} % subsection smaller than section
+  {\bfseries\large}    % Increased from \normalsize to \large
   {\thesubsection.}{0.5em}{}
 
+% Subsubsection: Standard Bold
 \titlespacing{\subsubsection}{0pt}{0pt}{1pt}
 \titleformat{\subsubsection}[block]
   {\bfseries\normalsize}
