@@ -143,5 +143,7 @@
 
 \renewcommand{\cftfigpresnum}{Зураг \ }
 \renewcommand{\cfttabpresnum}{Хүснэгт \ }
+\setlength{\cftfignumwidth}{5.2em}
+\setlength{\cfttabnumwidth}{6.2em}
 
 \makeatother

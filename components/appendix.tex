@@ -83,3 +83,89 @@ created\_at & Үүсгэсэн огноо \\
   }
 }
 \end{lstlisting}
+
+\section*{E. Хэрэглэгчийн үүрэг ба эрхийн матриц (жишээ)}
+
+\begin{table}[H]
+\centering
+\caption{Үүрэгт суурилсан эрхийн матриц (RBAC) жишээ}
+\label{tab:rbac_matrix}
+\small
+\begin{tabular}{p{5cm}ccc}
+\toprule
+\textbf{Үйлдэл} & \textbf{Оюутан} & \textbf{Багш} & \textbf{Админ} \\
+\midrule
+Карт үүсгэх/давтах & \checkmark & \checkmark & \checkmark \\
+Толь бичигт шинэ нэр томьёо нэмэх & \checkmark & \checkmark & \checkmark \\
+Нийтлэл/асуулт нийтлэх & \checkmark & \checkmark & \checkmark \\
+Сургалт/тэмцээн үүсгэх & -- & \checkmark & \checkmark \\
+Хэрэглэгчийн эрх удирдах & -- & -- & \checkmark \\
+Агуулга баталгаажуулах/устгах & -- & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{F. API endpoint-уудын жишээ жагсаалт}
+
+\begin{table}[H]
+\centering
+\caption{FutureHub REST API-ийн жишээ endpoint}
+\label{tab:api_endpoints}
+\small
+\begin{tabular}{p{2.5cm}p{5cm}p{6.5cm}}
+\toprule
+\textbf{Method} & \textbf{Endpoint} & \textbf{Зорилго} \\
+\midrule
+POST & /api/auth/login & Нэвтрэх, токен авах \\
+GET & /api/flashcards & Хэрэглэгчийн картуудыг авах \\
+POST & /api/flashcards & Шинэ карт үүсгэх \\
+PATCH & /api/flashcards/:id/review & Давталтын үр дүн илгээж SRS төлөв шинэчлэх \\
+GET & /api/dictionary?q=... & Нэр томьёо хайх \\
+POST & /api/articles & Нийтлэл үүсгэх \\
+POST & /api/discussions & Асуулт/сэдэв нээх \\
+GET & /api/rankings & Contribution/Competition ранкинг авах \\
+POST & /api/ocr/extract & Зурагнаас текст таних \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{G. Туршилтын кейсийн хураангуй жишээ}
+
+\begin{table}[H]
+\centering
+\caption{Системийн үндсэн туршилтын кейсүүд (жишээ)}
+\label{tab:test_cases_appendix}
+\small
+\begin{tabular}{p{5.5cm}p{4cm}p{4.5cm}}
+\toprule
+\textbf{Кейс} & \textbf{Хүлээгдэж буй үр дүн} & \textbf{Төлөв} \\
+\midrule
+Толь бичгээс флашкарт үүсгэх & Карт амжилттай хадгалагдах & Амжилттай \\
+Флашкарт review хийх & interval, next\_review\_at шинэчлэгдэх & Амжилттай \\
+OCR-аас текст таних & Танигдсан текст засварт харагдах & Амжилттай (засвартай) \\
+Нийтлэл нийтлэх ба унших & Нийтлэл жагсаалт/дэлгэрэнгүйд харагдах & Амжилттай \\
+Ranking шинэчлэх & Хувь нэмрийн оноо өсөх & Амжилттай \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{H. Contribution ranking тооцооллын ерөнхий зарчим}
+
+FutureHub системд ранкингийн оноог модулийн оролцоонд жин өгч нэгтгэх ерөнхий зарчмаар тооцож болно:
+
+\[
+Score = w_fF + w_dD + w_aA + w_qQ + w_pP
+\]
+
+энд:
+
+\begin{itemize}
+  \item $F$ — флашкартын оролцоо,
+  \item $D$ — толь бичгийн оролцоо,
+  \item $A$ — нийтлэл/блог оролцоо,
+  \item $Q$ — асуулт-хариултын оролцоо,
+  \item $P$ — төслийн тэмдэглэлийн оролцоо,
+  \item $w_*$ — тухайн оролцооны жин.
+\end{itemize}
+
+Энэхүү томьёо нь бодит системд чанарын шалгуур (баталгаажсан агуулга, эерэг үнэлгээ, админы хяналт)-тай хамт хэрэглэгдэх ёстой.
