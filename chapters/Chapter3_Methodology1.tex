@@ -117,7 +117,7 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 
 \subsection{Бизнес процессын загварчлал (UML)}
 
-\subsubsection{Use Case диаграм}
+\subsubsection{Контекст диаграм}
 
 Системд оролцогч гурван үүрэг бүр нь өөрийн онцлогт тохирсон үйлдлийн багцтай:
 \begin{itemize}
@@ -128,7 +128,7 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub-context.png}
-\caption{FutureHub системийн Use Case диаграм}
+\caption{FutureHub системийн контекст диаграм}
 \label{fig:futurehub-context}
 \end{figure}
 
@@ -146,9 +146,31 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 
 \begin{figure}[htbp]
 \centering
+\includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_auth.png}
+\caption{Нэвтрэлт ба зөвшөөрлийн урсгалын Sequence диаграм}
+\label{fig:futurehub-seq-auth}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_content.png}
 \caption{Контент үүсгэх урсгалын Sequence диаграм}
 \label{fig:futurehub-seq-content}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_qa.png}
+\caption{Q\&A урсгалын Sequence диаграм}
+\label{fig:futurehub-seq-qa}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_contest.png}
+\caption{Тэмцээний урсгалын Sequence диаграм}
+\label{fig:futurehub-seq-contest}
 \end{figure}
 
 %==============================================================
@@ -210,7 +232,20 @@ Version control & Git / GitHub & Итераци бүрийн өөрчлөлти�
     \item \textbf{Бодлогын түвшин:} PostgreSQL RLS ашиглан хэрэглэгч зөвхөн өөрийн зөвшөөрөгдсөн мөрүүдийг харах, өөрчлөх боломжтой байхаар тохируулсан
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{pictures/general-erdiagram.png}
+\caption{FutureHub системийн хялбаршуулсан ER диаграм}
+\end{figure}
+
 \subsection{Class диаграм}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{pictures/futurehub_4_class.png}
+\caption{FutureHub системийн Class диаграм}
+\label{fig:futurehub-class}
+\end{figure}
 
 Class диаграм нь системийн өгөгдлийн объектууд болон тэдгээрийн хоорондын хамаарлыг бүтцийн түвшинд илэрхийлнэ (Зураг~\ref{fig:futurehub-class}). Диаграмд \texttt{User}, \texttt{Flashcard}, \texttt{DictionaryEntry}, \texttt{Article}, \texttt{Discussion}, \texttt{Contest}, \texttt{Ranking} зэрэг үндсэн объектууд болон эдгээрийн хоорондын хамаарлыг харуулсан. Энэ нь системийн архитектурын суурь бүтцийг тодорхойлох, хөгжүүлэлтийн явцад өгөгдлийн зохион байгуулалт ба харилцааг ойлгоход чухал үүрэгтэй болно.
 
@@ -272,6 +307,12 @@ UI/UX дизайны хувьд дараах зарчмуудыг баримта
     \item \textbf{Компонентын тогтвортой байдал:} веб болон мобайл дээр ижил үйлдлийн логик, ижил нэршлийг баримталж, платформ хооронд шилжихэд хэрэглэгчийн танин мэдэхүйн ачаалал багасахаар зохион байгуулсан
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\textwidth]{pictures/display-tree.png}
+\caption{FutureHub системийн дэлгэцийн загвар (Display tree)}
+\label{fig:display-tree}
+\end{figure}
 
 %==============================================================
 \section{Хөгжүүлэлт ба туршилтын аргачлал}

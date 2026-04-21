@@ -13,7 +13,7 @@
 
 Системийн хөгжүүлэлтэд Итератив (Iterative SDLC) загварыг сонгосон. Энэ загвар нь шаардлага эхний шатанд бүрэн тогтоогдоогүй үед нарийн давтамжтай сайжруулалт хийх, хэрэглэгчийн санал хүсэлтийг богино мөчлөг бүрт тусгаж, хөгжүүлэлтэнд гарах эрсдэлийг үе шаттай бууруулах зорилготой. Уламжлалт Waterfall загварт үе шатуудын хоорондын уялдаа шугаман шинжтэй, эргэх холбоо сул байдаг нь хэрэглэгчийн шинэ шаардлагыг хожуу тусгах, улмаар төслийн төгсгөлд таарамжгүй бүтэц үүсэх эрсдэлийг дагуулдаг бол итератив загвар нь хувилбар бүр дээр баталгаажуулалт хийж, алдааг эрт илрүүлэх боломжийг олгодог. Ялангуяа OCR (Текст таних), SRS (Давталтын алгоритм), болон Ranking (Үнэлгээний систем) зэрэг нарийн төвөгтэй логик модулиуд нь бодит туршилтын үр дүнгээс хамаарч дахин тохируулагдах шаардлагатай байдаг тул тэдгээрийг салангад бүтцээр хөгжүүлж, итераци бүрт чанарыг нь ахиулах замаар системийн тогтвортой байдлыг хангасан.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/hytbrid-iterative.png}
 \caption{Iterative хөгжүүлэлтийн загварын ерөнхий схем}
@@ -54,7 +54,7 @@ FutureHub (зорилтот) & Тийм & Тийм & Тийм & Тийм & Ти�
 
 Хүснэгт~\ref{tab:system-compare}-аас харахад одоогийн платформуудад SRS, толь бичиг, хамтын орчин, ранкинг, OCR гэсэн таван чиглэлийг нэгтгэсэн шийдэл байхгүй бөгөөд FutureHub-ийн зорилтот функцууд нь яг эдгээрийг нэгтгэхээр зохион байгуулагдсан.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{pictures/functions-diagram.png}
 \caption{App болон Website хэсгүүдийн функцийн огтлолцол}
@@ -129,7 +129,7 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
     \item Админ: хэрэглэгчийн эрх, бодлого, тайлан хянах
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub-context.png}
 \caption{FutureHub системийн Use Case контекст}
@@ -139,35 +139,35 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 
 \subsubsection{Sequence диаграм (гол урсгалууд)}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_3_sequence.png}
 \caption{FutureHub системийн ерөнхий Sequence диаграм}
 \label{fig:futurehub-sequence-overview}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_auth.png}
 \caption{Нэвтрэлт ба зөвшөөрлийн урсгалын Sequence диаграм}
 \label{fig:futurehub-seq-auth}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_content.png}
 \caption{Контент үүсгэх урсгалын Sequence диаграм}
 \label{fig:futurehub-seq-content}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_qa.png}
 \caption{Q\&A урсгалын Sequence диаграм}
 \label{fig:futurehub-seq-qa}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_seq_contest.png}
 \caption{Тэмцээний урсгалын Sequence диаграм}
@@ -179,7 +179,7 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 
 \subsection{Class диаграм (өгөгдлийн объектын хамаарал)}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{pictures/futurehub_4_class.png}
 \caption{FutureHub системийн Class диаграм}
@@ -194,7 +194,7 @@ Q\&A асуулт/хариулт & \checkmark & \checkmark & -- \\ \hline
 
 Системийг Web (Vercel), Mobile (Flutter), Backend (Supabase) гэсэн байршуулалтын (deployment) түвшинд зохион байгуулсан. Клиентүүд REST API-аар дамжин өгөгдлийн үйлчилгээтэй холбогдоно.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.98\textwidth]{pictures/system-architecture.png}
 \caption{FutureHub системийн архитектурын зураглал}
@@ -276,19 +276,17 @@ Supabase/PostgreSQL-ийн full-text search механизмыг ашиглан 
     \item Компонентын тогтвортой байдал: веб ба мобайл дээр ижил үйлдлийн логик, нэршил
 \end{itemize}
 
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \includegraphics[width=0.65\textwidth]{pictures/NMCT.png}
-\caption{UI/UX брэндийн визуал суурь (NMCT)}
+\captionof{figure}{UI/UX брэндийн визуал суурь (NMCT)}
 \label{fig:ui-brand-nmct}
-\end{figure}
+\end{center}
 
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \includegraphics[width=0.92\textwidth,height=0.78\textheight,keepaspectratio]{pictures/Screenshot 2026-03-09 011006.png}
-\caption{Системийн прототип интерфэйсийн дэлгэц}
+\captionof{figure}{Системийн прототип интерфэйсийн дэлгэц}
 \label{fig:ui-prototype-screen}
-\end{figure}
+\end{center}
 
 %--------------------------------------------------------------
 \section{Хөгжүүлэлт ба туршилтын аргачлал}
