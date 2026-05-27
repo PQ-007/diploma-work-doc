@@ -80,12 +80,11 @@
 \titlespacing{\chapter}{0pt}{-70pt}{1pt}
 \titleformat{\chapter}[block]{\bfseries}{\textsc{\thechapter.}}{0.5em}{}
 \titlespacing{\section}{0pt}{0pt}{1pt}
-\titleformat{\section}[block]{\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\section}[block]{\bfseries}{\thesection}{0.5em}{}
 \titlespacing{\subsection}{0pt}{0pt}{1pt}
-\titleformat{\subsection}[block]{\bfseries}{}{0em}{}
+\titleformat{\subsection}[block]{\bfseries}{\thesubsection}{0.5em}{}
 \titlespacing{\subsubsection}{0pt}{0pt}{1pt}
 \titleformat{\subsubsection}[block]{\bfseries}{}{0em}{}
-
 
 \addtocounter{secnumdepth}{1}
 \setcounter{tocdepth}{1}
