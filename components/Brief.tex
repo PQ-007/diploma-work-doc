@@ -1,0 +1,100 @@
+\addtotoc{Товчлол}
+\thispagestyle{plain}
+
+\vspace*{-6mm}
+\begin{center}
+\textbf{\large \titlename}\\[1mm]
+\end{center}
+
+\begin{flushright}
+\departmentname\\
+Оюутан: \studentID, \authorShort\\
+Удирдагч багш: \supervisorname
+\end{flushright}
+
+\vspace{1mm}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\setlength{\columnsep}{7mm}
+\begin{multicols}{2}
+\setlength{\parskip}{5pt}
+\sloppy
+
+\noindent\textbf{1. Удиртгал}
+
+КУТ-ийн оюутнууд мэргэжлийн нэр томьёогоо ойлгох, бүтээлээ баримтжуулан хадгалах, мэдээллээ бусдадаа хуваалцахад зэрэг хүндрэлүүд нь суралцахад тулгардаг урт хугацааны асуудал юм. Одоогоор эдгээр хэрэгцээг хангах орчин байхгүй, тийм төрлийн мэдээллийн суваг ч хангалттай хэмжээнд үүсээгүй тул оюутнууд олон тусдаа платформ дунд цагаа үрж, интернетийн нөсөр эх сурвалжид төөрөх хандлагатай байдаг. Энэхүү судалгааны ажил нь дээрх асуудлыг шийдвэрлэх зорилгоор \textbf{FutureHub} нэртэй веб болон мобайл цогц платформын суурь шийдлийг боловсруулж, прототип түвшинд хөгжүүлэхэд чиглэсэн.
+
+\noindent\textbf{2. Онолын үндэс ба системд тусгасан байдал}
+
+Судалгааны онолын үндэс нь \textbf{SM-2 алгоритм дээр суурилсан Spaced Repetition System}, нийтэд нээлттэй мэдлэгийн системийн загварууд, \textbf{OCR технологи}, болон contribution-д суурилсан үнэлгээний загварт тулгуурласан. Эдгээрийн хослол нь мэдээлэл хадгалах, хэрэглээ болгох, системд буцаан тэдгээр мэдээллээ мэдлэг болгож хөрвүүлэн хуваалцах боломжийг бүрдүүлэх зорилготой.
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{pictures/functions-diagram.png}
+\captionof{figure}{Веб ба мобайл функцийн огтлолцол}
+\label{fig:brief-function-venn}
+\end{center}
+
+\noindent\textbf{3. Арга зүй}
+
+Системийг \textbf{Iterative SDLC} загвараар шаардлага тодорхойлох, модульчлан хөгжүүлэх, интеграцчлах, турших гэсэн давтамжит мөчлөгөөр хэрэгжүүлсэн. Шаардлагыг core болон extended ангилалд хуваан, оюутан, багш, админ гэсэн гурван үүргээр матрицчилсан. Туршилтыг unit, integration, UAT гурван түвшинд зохион байгуулж, SRS интервал тооцоолол, OCR урсгал, RLS эрхийн хяналт болон модуль хоорондын өгөгдлийн уялдааг баталгаажуулсан.
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{pictures/hytbrid-iterative.png}
+\captionof{figure}{Iterative SDLC загвар}
+\label{fig:brief-iterative-sdlc}
+\end{center}
+
+\noindent\textbf{4. Технологийн стек}
+
+Систем нь \textbf{Next.js} (веб), \textbf{Flutter} (мобайл), \textbf{Supabase/PostgreSQL} (backend) гэсэн гурван үндсэн хэсгээс бүрдэнэ. OCR-д \textbf{ML Kit} ашигласан.Өгөгдлийн сангийн хайлтыг GIN индекс болон full-text search-ээр хурдасгасан. Аюулгүй байдлыг \textbf{JWT + RBAC + RLS} гурван түвшний хамгаалалтаар хангаж, хувилбар хяналтыг Git/GitHub-ийн feature branch workflow-оор удирдсан.
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{pictures/system-architecture.png}
+\captionof{figure}{FutureHub системийн архитектурын зураглал}
+\label{fig:brief-system-architecture}
+\end{center}
+
+\noindent\textbf{5. Хөгжүүлэлт}
+
+Хөгжүүлэлтийг итераци бүр дээр баталгаажуулалт хийх зарчмаар явуулсан бөгөөд суурь бүтэц (authentication, navigation), core модулиуд (dictionary, Q\&A, article), extended модулиуд (contest, ranking, flashcard), мобайл нутагшуулалт (Flutter) гэсэн дөрвөн үндсэн шатаар гүйцэтгэсэн. Веб тал нь контент үүсгэх, хуваалцах, удирдах үйл ажиллагааны төв болж, мобайл тал нь өдөр тутмын SRS давталт болон OCR-д суурилсан карт үүсгэх урсгалыг хариуцав.
+\begin{center}
+\includegraphics[width=0.95\linewidth]{pictures/futurehub-context.png}
+\captionof{figure}{FutureHub системийн context diagram}
+\label{fig:brief-context-diagram}
+\end{center}
+
+
+\noindent\textbf{6. Туршилтын үр дүн}
+
+Үндсэн туршилтын кейсүүдийн дүнг дараах байдлаар нэгтгэв. SRS интервал болон EF тооцоолол SM-2 томьёотой бүрэн тохирсон. Толь бичиг--флашкарт нэг товшилтын уялдаа болон нийтлэл нийтлэх урсгал хэвийн ажилласан. Project log--профайл холболт, contribution ranking шинэчлэлт, RLS эрхийн хязгаарлалтын кейсүүд амжилттай баталгаажсан. OCR нь тод, сайн гэрэлтүүлэгтэй зураг дээр өндөр нарийвчлалтай ажилласан боловч гар бичмэл болон чанар муутай зураг дээр хэрэглэгчийн засвар шаардлагатай хэвээр байна. API-ийн дундаж хариу өгөх хугацаа зорилтот \textbf{500 мс} босгоос доогуур байсан.
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{pictures/general-erdiagram.png}
+\captionof{figure}{FutureHub системийн хялбаршуулсан ER диаграм}
+\label{fig:brief-er-diagram}
+\end{center}
+
+\noindent\textbf{7. Хязгаарлалт ба цаашдын чиглэл}
+
+Судалгааны явцад дараах хязгаарлалтууд илэрсэн: OCR-ийн нарийвчлал зургийн чанараас шууд хамаарах, ранкинг тооцох алгоритм ерөнхий байдлаар тогтоогдсон тул тэнцвэржүүлэлт, нарийн болгосон нэмэлт шаардлагатай, production түвшний аюулгүй байдлын аудит хийгдээгүй, сургуулийн дотоод систем болон LMS-тэй бүрэн интеграц хийгдээгүй байна. Цаашдын хөгжүүлэлтэд \textbf{SM-2-оос FSRS загвар руу шилжих}, хэрэглэгчийн ахицын аналитик dashboard нэмэх, сургуулийн бүртгэлтэй \textbf{SSO интеграц} хийх, олон сургуульд зориулсан \textbf{multi-tenant архитектур} руу шилжих зэрэг чиглэлүүдийг тодорхойлсон.
+
+\noindent\textbf{8. Дүгнэлт}
+
+Анх гаргасан системийн шаардлага, хүлээцэнд хараахан хүрээгүй ч үндсэн функц, ажиллах зарчим, агуулж буй мэдээлэл зэрэг, тэдгээрийн загварчлалтай холбоотой шийдлүүд хүрэлцээтэй нөхцөлүүдийг хангахуйц хэмжээнд хөгжүүлэгдсэн байсан. Мөн FutureHub нь SRS, OCR, толь бичиг, Q\&A, ранкинг зэрэг өмнө нь тус тусдаа ашиглагддаг хэрэгслүүдийг \textbf{нэгдсэн өгөгдлийн цөм} дээр уялдуулан нэгтгэх гэж үзсэн нэг оролдлого болсноос гадна хэрэгтэй мэдээллийг агуулах архивын үүрэг гүйцэтгэх чадвартай гэсэн дүгнэлтэнд хүрсэн. FutureHub нь суралцах урсгалыг системчлэх, контент экосистем бий болгох, өрсөлдөөнт механизм нэвтрүүлэх зэрэг хэрэглээний ач холбогдолтой ажил учир хэдийгээр одоо олон хязгаарлалтуудтай ч цаашид илүү өргөн хүрээнд, илүү гүнзгийрүүлэн судлах, хөгжүүлэх боломжтой гэж үзэж байна . 
+
+\noindent\textbf{Ном зүй}
+
+\small
+\begin{enumerate}
+    \item Wozniak, P. A. (1990). Optimization of Learning (SM-2 algorithm).
+    \item Cepeda, N. J. et al. (2006). Distributed Practice in Verbal Recall Tasks. \textit{Psychological Bulletin}, 132(3).
+    \item PostgreSQL Global Development Group. Full-text Search Documentation.
+    \item Google. ML Kit Text Recognition Documentation.
+    \item Supabase Documentation (Auth, RLS, PostgreSQL integration).
+    \item Next.js, Flutter official technical documentation.
+\end{enumerate}
+\normalsize
+
+\end{multicols}

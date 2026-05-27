@@ -2,7 +2,7 @@
 
 \chapter*{Хавсралт}
 
-\section*{A. Системийн модулиуд ба үүргүүдийн товч жагсаалт}
+\section*{Системийн модулиуд ба үүргүүдийн товч жагсаалт}
 
 FutureHub системийн ерөнхий бүтэц, оролцогчдын харилцан үйлчлэлийг Зураг~\ref{fig:futurehub-context}-т харуулсан. Үүнийг модуль-үйлдлийн түвшинд нэгтгэн үзүүлэхэд:
 
@@ -26,32 +26,8 @@ FutureHub системийн ерөнхий бүтэц, оролцогчдын �
 \end{tabular}
 \end{table}
 
-\section*{B. Өгөгдлийн загварын жишээ (концепц түвшин)}
 
-Доорх хүснэгтүүд нь FutureHub системийн өгөгдлийн сангийн \textit{концепц} түвшний жишээ загвар юм.
-
-\begin{table}[H]
-\centering
-\caption{Флашкарт өгөгдлийн жишээ бүтэц}
-\label{tab:flashcard_schema}
-\small
-\begin{tabular}{p{4cm}p{10cm}}
-\toprule
-\textbf{Талбар} & \textbf{Тайлбар} \\
-\midrule
-user\_id & Карт эзэмшигч хэрэглэгч \\
-front & Урд талын текст (ж. япон нэр томьёо) \\
-back & Ар талын тайлбар/орчуулга \\
-example & Жишээ өгүүлбэр/тайлбар \\
-next\_review\_at & Дараагийн давталтын огноо (SRS) \\
-interval\_days & Давталтын интервал (өдрөөр) \\
-ease\_factor & Давталтын коэффициент \\
-created\_at & Үүсгэсэн огноо \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\section*{C. Зайтай давталтын (SRS) хуваарь шинэчлэх псевдо код}
+\section*{Зайтай давталтын (SRS) хуваарь шинэчлэх псевдо код}
 
 \begin{algorithm}[H]
 \caption{Флашкартын дараагийн давталт төлөвлөх (ерөнхий)}
@@ -69,87 +45,7 @@ created\_at & Үүсгэсэн огноо \\
 \end{algorithmic}
 \end{algorithm}
 
-\section*{D. OCR-аар карт үүсгэх урсгалын жишээ}
-
-\begin{lstlisting}[language={}, caption={OCR-аас флашкарт үүсгэх жишээ payload}, label={lst:ocr_payload}]
-{
-  "image": "<base64 or file reference>",
-  "language": "jpn",
-  "selectedText": "...",
-  "card": {
-    "front": "...",
-    "back": "...",
-    "tags": ["KUT", "Terminology"]
-  }
-}
-\end{lstlisting}
-
-\section*{E. Хэрэглэгчийн үүрэг ба эрхийн матриц (жишээ)}
-
-\begin{table}[H]
-\centering
-\caption{Үүрэгт суурилсан эрхийн матриц (RBAC) жишээ}
-\label{tab:rbac_matrix}
-\small
-\begin{tabular}{p{5cm}ccc}
-\toprule
-\textbf{Үйлдэл} & \textbf{Оюутан} & \textbf{Багш} & \textbf{Админ} \\
-\midrule
-Карт үүсгэх/давтах & \checkmark & \checkmark & \checkmark \\
-Толь бичигт шинэ нэр томьёо нэмэх & \checkmark & \checkmark & \checkmark \\
-Нийтлэл/асуулт нийтлэх & \checkmark & \checkmark & \checkmark \\
-Сургалт/тэмцээн үүсгэх & -- & \checkmark & \checkmark \\
-Хэрэглэгчийн эрх удирдах & -- & -- & \checkmark \\
-Агуулга баталгаажуулах/устгах & -- & \checkmark & \checkmark \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\section*{F. API endpoint-уудын жишээ жагсаалт}
-
-\begin{table}[H]
-\centering
-\caption{FutureHub REST API-ийн жишээ endpoint}
-\label{tab:api_endpoints}
-\small
-\begin{tabular}{p{2.5cm}p{5cm}p{6.5cm}}
-\toprule
-\textbf{Method} & \textbf{Endpoint} & \textbf{Зорилго} \\
-\midrule
-POST & /api/auth/login & Нэвтрэх, токен авах \\
-GET & /api/flashcards & Хэрэглэгчийн картуудыг авах \\
-POST & /api/flashcards & Шинэ карт үүсгэх \\
-PATCH & /api/flashcards/:id/review & Давталтын үр дүн илгээж SRS төлөв шинэчлэх \\
-GET & /api/dictionary?q=... & Нэр томьёо хайх \\
-POST & /api/articles & Нийтлэл үүсгэх \\
-POST & /api/discussions & Асуулт/сэдэв нээх \\
-GET & /api/rankings & Contribution/Competition ранкинг авах \\
-POST & /api/ocr/extract & Зурагнаас текст таних \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\section*{G. Туршилтын кейсийн хураангуй жишээ}
-
-\begin{table}[H]
-\centering
-\caption{Системийн үндсэн туршилтын кейсүүд (жишээ)}
-\label{tab:test_cases_appendix}
-\small
-\begin{tabular}{p{5.5cm}p{4cm}p{4.5cm}}
-\toprule
-\textbf{Кейс} & \textbf{Хүлээгдэж буй үр дүн} & \textbf{Төлөв} \\
-\midrule
-Толь бичгээс флашкарт үүсгэх & Карт амжилттай хадгалагдах & Амжилттай \\
-Флашкарт review хийх & interval, next\_review\_at шинэчлэгдэх & Амжилттай \\
-OCR-аас текст таних & Танигдсан текст засварт харагдах & Амжилттай (засвартай) \\
-Нийтлэл нийтлэх ба унших & Нийтлэл жагсаалт/дэлгэрэнгүйд харагдах & Амжилттай \\
-Ranking шинэчлэх & Хувь нэмрийн оноо өсөх & Амжилттай \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\section*{H. Contribution ranking тооцооллын ерөнхий зарчим}
+\section*{Ranking тооцооллын ерөнхий зарчим}
 
 FutureHub системд ранкингийн оноог модулийн оролцоонд жин өгч нэгтгэх ерөнхий зарчмаар тооцож болно:
 
