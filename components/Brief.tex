@@ -40,23 +40,32 @@
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{pictures/functions-diagram.png}
+\begingroup
+\captionsetup{list=false}
 \captionof{figure}{Веб ба мобайл функцийн огтлолцол}
+\endgroup
 \label{fig:brief-function-venn}
 \end{center}
 
 \noindent\textbf{2. Судалгааны арга зүй}
 
-Системийг функцээр нь core болон extended ангилалд хуваан, оюутан, багш, админ гэсэн гурван хэрэглэгчийн төрөлтэй байхаар зохиомжилсон. Технологийн стекийн хувьд систем нь \textbf{Next.js} (веб), \textbf{Flutter} (мобайл), \textbf{Supabase/PostgreSQL} (backend) гэсэн гурван үндсэн хэсгээс бүрдэнэ. OCR-д \textbf{ML Kit} ашигласан. Өгөгдлийн сангийн хайлтыг GIN индекс болон full-text search-ээр хурдасгасан. Аюулгүй байдлыг \textbf{JWT + RBAC + RLS} гурван түвшний хамгаалалтаар хангаж, хувилбар хяналтыг Git/GitHub-ийн feature branch workflow-оор удирдсан.
+Системийг функцээр нь core болон extended ангилалд хуваан, оюутан, багш, админ гэсэн гурван хэрэглэгчийн төрөлтэй байхаар зохиомжилсон. Технологийн стекийн хувьд систем нь Next.js (веб), Flutter (мобайл), Supabase/PostgreSQL (backend) гэсэн гурван үндсэн хэсгээс бүрдэнэ. OCR-д ML Kit ашигласан. Өгөгдлийн сангийн хайлтыг GIN индекс болон full-text search-ээр хурдасгасан. Аюулгүй байдлыг JWT + RBAC + RLS гурван түвшний хамгаалалтаар хангаж, хувилбар хяналтыг Git/GitHub-ийн feature branch workflow-оор удирдсан.
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{pictures/futurehub-context.png}
-\captionof{figure}{FutureHub системийн context diagram}
+\begingroup
+\captionsetup{list=false}
+\captionof{figure}{Системийн контекст диаграмм}
+\endgroup
 \label{fig:brief-context-diagram}
 \end{center}
 Хөгжүүлэлтийг суурь бүтэц (authentication, navigation), core модулиуд (dictionary, Q\&A, article), extended модулиуд (contest, ranking, flashcard), мобайл хөрвүүлэлт (Flutter) гэсэн дөрвөн үндсэн шатаар гүйцэтгэсэн. Туршилтыг unit, integration, UAT гурван түвшинд зохион байгуулж, SRS интервал тооцоолол, OCR урсгал, RLS эрхийн хяналт болон модуль хоорондын өгөгдлийн уялдааг баталгаажуулсан. 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{pictures/system-architecture.png}
-\captionof{figure}{FutureHub системийн архитектур}
+\begingroup
+\captionsetup{list=false}
+\captionof{figure}{Системийн архитектур}
+\endgroup
 \label{fig:brief-system-architecture}
 \end{center}
 
@@ -134,7 +143,7 @@ The objective of this thesis is to design a comprehensive web and mobile platfor
 
 \noindent\textbf{2. Methodology}
 
-The system features are classified into core and extended modules, designed for three user roles: student, instructor, and admin. In terms of the technology stack, the system comprises three main components: \textbf{Next.js} (web), \textbf{Flutter} (mobile), and \textbf{Supabase/PostgreSQL} (backend). \textbf{ML Kit} is utilized for OCR. Database search is optimized using GIN indexes and full-text search. Security is ensured through a three-tier protection layer consisting of \textbf{JWT + RBAC + RLS}, and version control is managed using Git/GitHub feature branch workflow.
+The system features are classified into core and extended modules, designed for three user roles: student, instructor, and admin. In terms of the technology stack, the system comprises three main components: Next.js (web), Flutter (mobile), and Supabase/PostgreSQL (backend). ML Kit is utilized for OCR. Database search is optimized using GIN indexes and full-text search. Security is ensured through a three-tier protection layer consisting of JWT + RBAC + RLS, and version control is managed using Git/GitHub feature branch workflow.
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{pictures/futurehub-context.png}
