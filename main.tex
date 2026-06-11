@@ -1,8 +1,8 @@
 \documentclass[11pt]{Thesis}
 \usepackage{fontspec}
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
-\setmonofont[Scale=0.9]{Consolas}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont[Scale=0.9]{Liberation Mono}
 
 % 1. LANGUAGE SETTINGS (Must come before biblatex)
 \usepackage{polyglossia}
@@ -10,13 +10,12 @@
 \setotherlanguage{english}
 \setotherlanguage{japanese}
 
-% Гол текст (Кирилл) — Times New Roman хэвээр
-\setmainfont{Times New Roman}
+% Гол текст (Кирилл) — Liberation Serif (Times New Roman-тай ижил хэмжээс, Кирилл дэмжинэ)
+\setmainfont{Liberation Serif}
 
 % Япон текстэнд CJK фонт
-% (Windows дээр ихэвчлэн байдаг: Yu Mincho / Yu Gothic)
-\newfontfamily\japanesefont{Yu Mincho}
-\newfontfamily\japanesefontsf{Yu Gothic}
+\newfontfamily\japanesefont{IPAMincho}
+\newfontfamily\japanesefontsf{IPAGothic}
 
 
 % Fixes the "Mongolian not supported" biblatex warning
@@ -110,12 +109,12 @@
 \setcounter{page}{1}
 
 
-\input{Chapters/Chapter1_Introduction}
-\input{Chapters/Chapter2_Literature}
+\input{chapters/Chapter1_Introduction}
+\input{chapters/Chapter2_Literature}
 
-\input{Chapters/Chapter3_Methodology1}
-\input{Chapters/Chapter4_Results}
-\input{Chapters/Chapter5_Conclusion}
+\input{chapters/Chapter3_Methodology}
+\input{chapters/Chapter4_Results}
+\input{chapters/Chapter5_Conclusion}
 
 %---------
 % Ном зүй
@@ -127,8 +126,9 @@
 
 \input{components/Bibliography}
 \newpage
-\input{components/Appendix}
 \input{components/Graditude}
+
+
 \newpage
 \input{components/Brief}
 
